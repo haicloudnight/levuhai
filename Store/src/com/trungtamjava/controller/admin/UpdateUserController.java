@@ -52,6 +52,6 @@ public class UpdateUserController extends HttpServlet {
 
 		userDao.update(user);
 
-		resp.sendRedirect("/finalweb10/admin/user/search");
+		resp.sendRedirect("/Store/admin/user/search");
 	}
 }

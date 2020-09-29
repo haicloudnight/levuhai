@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.trungtamjava.model.User;
+
+
 
 
 @WebFilter(urlPatterns = { "/admin/*" })
@@ -27,11 +30,18 @@ public class AdminFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("FILTER");
-	
-    HttpServletResponse resp = ( HttpServletResponse) response;
-    chain.doFilter(request, response);
-	}
+		 HttpServletResponse resp = ( HttpServletResponse) response;
+		    HttpServletRequest req = (HttpServletRequest) request;
+		    HttpSession session = req.getSession();
+		    if(session.getAttribute("user") !=null) {
+		    	User user = (User) session.getAttribute("user");
+		    if (user.getRole().equals("UserRole.ROLE_ADMIN")) {
+				resp.sendRedirect("/Store/admin/home"); // respond : server tra ve
+			}else {
+				resp.sendRedirect("/Store/admin/home");
+			}
+		    resp.sendRedirect("/Store/member/home");
+	}}
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {

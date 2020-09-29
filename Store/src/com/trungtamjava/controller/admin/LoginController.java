@@ -39,9 +39,9 @@ public class LoginController extends HttpServlet {
 			// chuyen huong : server tra ve cho client mot trang web(duong dan) khac
 			// req.getContextPath(): ten root path(ten project)
 			if (user.getRole().equals("123")) {
-				resp.sendRedirect(req.getContextPath() + "finalweb10/admin/home"); // respond : server tra ve
+				resp.sendRedirect(req.getContextPath() + " "); // respond : server tra ve
 			}else {
-				resp.sendRedirect(req.getContextPath() + "finalweb10/member/home");
+				resp.sendRedirect(req.getContextPath() + "Store/member/home");
 			}
 			
 			System.out.println("Fail");
